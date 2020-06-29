@@ -1,0 +1,751 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Δωρεάν Μαθήματα Apache Camel</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description"
+		  content="Μια ολοκληρωμένη σειρά δωρεάν μαθημάτων και on-line σεμιναρίων σε Apache Camel">
+	<meta name="robots" content="index, follow">
+	<meta name="keywords" content="Apache Camel, Enterprise Integration Patterns,
+              δωρεάν,
+               προγραμματισμός, δωρεάν μαθήματα, δωρεάν σεμινάρια, μαθήματα Apache Camel, σεμινάρια Apache Camel" />
+	<meta name="author" content="Michail Kassapoglou" />
+
+	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content="" />
+	<meta property="og:image" content="" />
+	<meta property="og:url" content="" />
+	<meta property="og:site_name" content="" />
+	<meta property="og:description" content="" />
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700" rel="stylesheet">
+
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="css/magnific-popup.css">
+
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="css/flexslider.css">
+
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+	<!-- Flaticons  -->
+	<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="css/style.css">
+
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150900548-1"></script>
+	<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=sunburst"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-150900548-1');
+	</script>
+</head>
+<body>
+
+	<div class="colorlib-loader"></div>
+
+	<div id="page">
+		<nav class="colorlib-nav" role="navigation">
+			<div class="upper-menu">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-4">
+							<p>Welcome to Kassapoglou</p>
+						</div>
+						<!--<div class="col-xs-6 col-md-push-2 text-right">
+							<p>
+								<ul class="colorlib-social-icons">
+									<li><a href="#"><i class="icon-twitter"></i></a></li>
+									<li><a href="#"><i class="icon-facebook"></i></a></li>
+									<li><a href="#"><i class="icon-linkedin"></i></a></li>
+									<li><a href="#"><i class="icon-dribbble"></i></a></li>
+								</ul>
+							</p>
+							<p class="btn-apply"><a href="#">Apply Now</a></p>
+						</div> -->
+					</div>
+				</div>
+			</div>
+			<div class="top-menu">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-2">
+							<div id="colorlib-logo"><a
+									href="https://kassapoglou.github.io/main/index.html">Kassapoglou</a></div>
+						</div>
+						<div class="col-md-10 text-right menu-1">
+							<ul>
+								<li><a href="https://kassapoglou.github.io/main/index.html">Home</a></li>
+								<li class="has-dropdown active">
+									<a href="https://kassapoglou.github.io/main/courses.html">Courses</a>
+									<ul class="dropdown">
+										<li><a href="https://kassapoglou.github.io/java/java-programming.html">Java</a>
+										</li>
+										<li><a
+												href="https://kassapoglou.github.io/python/python-programming.html">Python</a>
+										</li>
+										<li><a href="https://kassapoglou.github.io/go/go-programming.html">GO</a></li>
+										<li><a
+												href="https://kassapoglou.github.io/javascript/javascript-programming.html">JavaScript</a>
+										</li>
+										<li><a href="https://kassapoglou.github.io/maven/learning-maven.html">Apache
+												Maven</a></li>
+										<li><a href="https://kassapoglou.github.io/camel/apache-camel-programming.html">Apache
+												Camel</a></li>
+									</ul>
+								</li>
+								<!--<li><a href="about.html">About</a></li>-->
+								<!--	<li><a href="event.html">Events</a></li>
+								<li><a href="news.html">News</a></li> -->
+								<li><a href="https://kassapoglou.github.io/main/contact.html">Contact</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<aside id="colorlib-hero">
+			<div class="flexslider">
+				<ul class="slides">
+					<li style="background-image: url(images/A_Camel3.jpeg);">
+						<div class="overlay"></div>
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-md-6 col-sm-12 col-md-offset-3 slider-text">
+									<div class="slider-text-inner text-center">
+										<h1><STRONG>ΜΑΘΑΙΝΩ ΔΩΡΕΑΝ APACHE CAMEL</STRONG></h1>
+										<h2><strong>ΕΝΟΤΗΤΑ 1 - ENVIRONMENT SETUP AND SIMPLE FILE COPY EXAMPLE</strong></h2>
+										<h2><strong><span><a href="https://kassapoglou.github.io/main/index.html">Home</a> | <a
+													href="https://kassapoglou.github.io/main/courses.html">Courses</a> |
+											<a href="https://kassapoglou.github.io/camel/apache-camel-programming.html">APACHE CAMEL PROGRAMMING</a></span></strong></h2>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</aside>
+
+		<div class="colorlib-classes">
+			<div class="container">
+				<div class="row">
+					<div class="col-12 col-lg-12">
+						<div class="row row-pb-lg">
+							<div class="col-md-12 animate-box">
+								<div class="classes class-single">
+									<div class="classes-img" style="background-image: url(images/A_Camel5.jpeg);">
+										<span class="price text-center"><small>FREE</small></span>
+									</div>
+									<div class="desc desc2">
+										<h3 align="center"><a
+												href="https://kassapoglou.github.io/java/java-programming.html">ΕΝΟΤΗΤΑ 1 APACHE CAMEL - ENVIRONMENT SETUP AND SIMPLE FILE COPY EXAMPLE</a></h3>
+												<center>
+													<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+														<input type="hidden" name="cmd" value="_s-xclick" />
+														<input type="hidden" name="hosted_button_id" value="GQD77W6K672RA" />
+														<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit"
+															title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+														<img alt="" border="0" src="https://www.paypal.com/en_GR/i/scr/pixel.gif" width="1" height="1" />
+													</form>
+												</center>
+
+
+<p>Από το σημερινό δωρεάν μάθημα Apache Camel ξεκινάμε μια σειρά μαθημάτων τα οποία θα καλύψουν θέματα από system
+integration μέχρι microservices. Θα πρέπει να έχετε παρακολουθήσει κάποιο σεμινάριο στην Java ή να έχετε διαβάσει τις
+ενότητες στο <a href="https://kassapoglou.github.io/java/java-programming.html">
+	<font color="#0000CC">https://kassapoglou.github.io/java/java-programming.html</font>
+</a> για να μπορέσετε να ακολουθήσετε τα μαθήματα. Τα
+παραδείγματα θα είναι απλά και θα ακολουθούνται από αρκετή θεωρία όπως άλλωστε είναι και η λογική αυτού του site. Ας
+ξεκινήσουμε λοιπόν.</p>
+
+<p>Το πιο κοινό σενάριο όταν αναλαμβάνεται την δημιουργία κώδικα σε enterprise συστήματα είναι να καταφέρετε να ενώσετε την
+καινούργια εφαρμογή που δημιουργείται με υπάρχοντα συστήματα. Αυτό σε τεχνική ορολογία ονομάζεται system integration. Η
+πιο πιθανή σας προσέγγιση δεν θα είναι να κατανοήσετε την λειτουργία του συστήματος που υπάρχει ήδη αλλά πως θα
+μπορέσετε πετυχημένα να ανταλλάξετε δεδομένα μαζί του. Δεν θα ήταν καθόλου συνετό, (αν και δεν είναι ακατόρθωτο) να
+δημιουργήσετε από το μηδέν τον κώδικα που ενοποιεί τα συστήματα, γιατί θα ήταν μια δαπανηρή προσπάθεια και μπορεί και να
+μην είχε και απόλυτη επιτυχία. Η καλύτερη σας επιλογή θα ήταν να ψάξετε για ένα έτοιμο framework που μπορεί να σας
+προσφέρει με τον ελάχιστο δυνατόν κώδικα τις υπηρεσίες που ζητάτε. Αυτό το framework ονομάζεται Apache Camel και είναι
+πολύ γνωστό ανάμεσα στους προγραμματιστές για τις δυνατότητες του.</p>
+
+<p>Το Camel framework στηρίζεται σε έναν μηχανισμό δρομολόγησης (routing engine builder) ο οποίος αφού διαβάσει τα δεδομένα
+από κάποιο προκαθορισμένο σημείο, τα επεξεργάζεται και αποφασίζει σε ποιον προορισμό ή προορισμούς να στείλει με βάση
+τους κανόνες δρομολόγησης που του έχουμε ορίσει. Η γλώσσα στην οποία στηρίζεται το Camel framework για να ορίσει τους
+κανόνες δρομολόγησης ονομάζεται DSL (Domain-specific language) και είναι πολύ απλή και στηρίζεται στην λογική των
+business processes.</p>
+
+<p>Μια από τις θεμελιώδεις αρχές του Camel είναι ότι δεν απαιτεί να μετατραπούν τα δεδομένα σε κάποια συγκεκριμένη μορφή
+για να μπορέσει να τα επεξεργαστεί και να αποφασίσει την δρομολόγησή τους. Αυτό επιτρέπει στο Camel να μπορεί να
+χρησιμοποιήσει το ίδιο API ανεξάρτητα από το πρωτόκολλο ή τον τύπο δεδομένων που χρησιμοποιούνται σε κάποιο σύστημα.
+Μέχρι τώρα, το Camel προσφέρει συμβατότητα με περισσότερα από 280 πρωτόκολλα και τύποι δεδομένων. Πως όμως δημιουργούμε
+ένα απλό Camel Route?</p>
+
+<p>Βασικά, πριν ξεκινήσουμε να δημιουργήσουμε τον πρώτο μας route, θα πρέπει να αναφέρουμε τι εργαλεία χρειαζόμαστε για να
+μπορέσουνε να αναπτύξουμε τα προγράμματα μας.</p>
+<p><strong>1.</strong> Χρειάζεται να έχετε εγκαταστήσει Java 1.8 στον υπολογιστή σας</p>
+<p><strong>2.</strong> Είναι απαραίτητο κάποιο μοντέρνο IDE. Στα δικά μας παραδείγματα θα χρησιμοποιήσω την δωρεάν έκδοση του IntelliJ
+(Community Edition).</p>
+<p><strong>3.</strong>Όλα μας τα project θα χρησιμοποιήσουν Maven. Σας προτείνω να κατεβάσετε και να εγκαταστήσετε την τελευταία έκδοση του
+Apache Maven. Για την εγκατάσταση του IntelliJ όσο και για την εγκατάσταση του Maven μπορείτε να δείτε την ενότητα
+<a href="https://kassapoglou.github.io/maven/learning-maven-unit1.html">
+	<font color="#0000CC">(https://kassapoglou.github.io/maven/learning-maven-unit1.html )</font>
+</a>.</p>
+
+<p><strong>4.</strong> Θα χρησιμοποιήσουμε τον application server Apache Tomee με mircroprofile για να αναπτύξουμε τα προγράμματα μας.
+Αργότερα θα αναπτύξουμε και microservices σε αυτή την πλατφόρμα.</p>
+
+<p>Σαν πρώτο βήμα, πηγαίνουμε στο <a href="https://start.microprofile.io/">
+	<font color="#0000CC">(https://start.microprofile.io/)</font>
+</a> και επιλέγουμε <strong>Apache TomEE</strong> από την MicroProfile Runtime
+κατηγορία. Δεν χρειάζεται να επιλέξουμε τίποτα άλλο. Τα Examples for specifications είναι πληροφορίες που παίρνουμε όταν
+χρησιμοποιούμε το microprofile για την δημιουργία ενός project αλλά εμείς δεν θα τα χρειαστούμε. Επίσης ας αλλάξουμε το
+όνομα του project σε FileCopy. Οπότε πατάτε το Download για να κατεβάσετε το demo project.</p>
+
+<img src="apache-camel-unit1/apache-camel-unit1-1.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
+<p></p>
+
+<p>Αφού κάνετε unzip το project που μόλις κατεβάσατε, χρησιμοποιείστε το IntelliJ για να το ανοίξετε. Θα χρειαστεί να κάνουμε κάποιες αλλαγές κυρίως στο POM αρχείο του project για να δηλώσουμε τις τελευταίες εκδόσεις των βιβλιοθηκών που θα χρησιμοποιήσουμε.
+</p>
+
+<p>Σαν πρώτο βήμα, διαγράψτε τα δύο java αρχεία (FileCopyRestApplication και HelloController) μέσα από το πακέτο com.example.FileCopy.</p>
+
+<img src="apache-camel-unit1/apache-camel-unit1-2.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
+<p></p>
+
+<p>Έπειτα ανοίξτε το POM αρχείο. Εδώ υπάρχουν αρκετές αλλαγές που θα χρειαστεί να κάνουμε. Ας 
+	τις δούμε μια προς μια.</p>
+
+<p>Σαν πρώτο βήμα πρέπει να δηλώσουμε την έκδοση του Apache Camel που θα χρησιμοποιήσουμε. Με βάση το site του Apache
+	Camel, η πιο τελευταία έκδοση αυτή την χρονική στιγμή είναι η <strong>3.4.0</strong>. Οπότε προσθέτουμε το εξής dependency αμέσως
+	μετά το <strong><packaging>war</packaging></strong>.</p>
+
+<img src="apache-camel-unit1/apache-camel-unit1-3.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
+<p></p>
+
+<p>Σαν δεύτερο βήμα πρέπει να δηλώσουμε την πιο τελευταία και σταθερή έκδοση του Apache TomEE η οποία είναι η <strong>8.0.3</strong>.
+	Αλλάζουμε λοιπόν το <strong>tomee.version</strong> σε 8.0.3.</p>
+
+<img src="apache-camel-unit1/apache-camel-unit1-4.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
+<p></p>
+
+<p>Στο επόμενο και τελευταίο βήμα θα πρέπει να δηλώσουμε τις βιβλιοθήκες του Apache Camel που χρειαζόμαστε για να
+	τρέξουμε τον κώδικα μας. Σε αυτή την πρώτη ενότητα θα δείξουμε πως χρησιμοποιούμε το Apache Camel για να
+	αντιγράψουμε αρχεία από ένα φάκελλο σε έναν άλλο φάκελλο. Αυτή η απλή λειτουργία δεν απαιτεί να φορτωθούν όλες οι
+	βιβλιοθήκες του Apache Camel. Αργότερα όμως που θα προσθέσουμε και άλλες λειτουργίες, όπως αποστολή μηνυμάτων σε ένα
+	εξωτερικό queue όπως το kafka, τότε θα προσθέσουμε και άλλα dependencies στο POM αρχείο. Προσθέτουμε λοιπόν τα εξής
+	τρία dependencies:</p>
+
+<img src="apache-camel-unit1/apache-camel-unit1-5.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
+<p></p>
+
+<p>Αφού ολοκληρώσετε όλες τις παραπάνω αλλαγές θα πρέπει το POM αρχείο να είναι ως εξής:</p>
+
+<p><strong>POM.xml</strong></p>
+
+<pre class="prettyprint"><xmp>
+
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.example</groupId>
+	<artifactId>FileCopy</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Add Camel BOM -->
+			<dependency>
+				<groupId>org.apache.camel</groupId>
+				<artifactId>camel-bom</artifactId>
+				<version>3.4.0</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+
+	<properties>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<failOnMissingWebXml>false</failOnMissingWebXml>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<tomee.version>8.0.3</tomee.version>
+		<final.name>FileCopy</final.name>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.eclipse.microprofile</groupId>
+			<artifactId>microprofile</artifactId>
+			<version>2.1</version>
+			<type>pom</type>
+			<scope>provided</scope>
+		</dependency>
+		<!-- CDI API -->
+		<dependency>
+			<groupId>jakarta.enterprise</groupId>
+			<artifactId>jakarta.enterprise.cdi-api</artifactId>
+			<version>2.0.2</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Camel CDI -->
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-cdi</artifactId>
+			<version>3.4.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-core</artifactId>
+			<version>3.4.0</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>FileCopy</finalName>
+	</build>
+	<profiles>
+		<profile>
+			<id>tomee</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.tomee.maven</groupId>
+						<artifactId>tomee-maven-plugin</artifactId>
+						<version>${tomee.version}</version>
+						<executions>
+							<execution>
+								<id>executable-jar</id>
+								<phase>package</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+						  <context>ROOT</context>
+						  <tomeeClassifier>microprofile</tomeeClassifier>
+						  <tomeeHttpPort>8080</tomeeHttpPort>
+						  <tomeeShutdownPort>8005</tomeeShutdownPort>
+						  <tomeeAjpPort>8009</tomeeAjpPort>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>
+
+		</xmp></pre>
+
+<p>Ας εκτελέσουμε τώρα την <strong> mvn clean install</strong> εντολή από το Maven για να κατεβούν τοπικά οι βιβλιοθήκες που δηλώσαμε στο
+	POM.</p>
+
+<p>Τώρα μπορούμε να γράψουμε τον κώδικα για το πρώτο μας απλό παράδειγμα. Υπάρχει όμως και μια θεωρία την οποία πρέπει
+	να αναφέρουμε για να κάνουμε και μια ομαλή εισαγωγή στο πως θα προχωρήσουμε και στις υπόλοιπες ενότητες.</p>
+
+<p>Όπως ήδη αναφέραμε, το Apache Camel είναι ένα routing engine. Αυτό σημαίνει ότι με βάση κάποιους κανόνες που ορίζουμε
+	δρομολογεί πληροφορίες από ένα σημείο σε ένα άλλο σημείο. </p>
+
+<img src="apache-camel-unit1/apache-camel-unit1-6.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
+<p></p>
+
+<p>Το αρχικό όπως και το τελικό σημείο ονομάζονται endpoints. Στο παράδειγμα που θα δούμε σε λίγο, το οποίο έχει να
+	κάνει με την μεταφορά ενός οποιουδήποτε αρχείο από ένα φάκελο Α σε έναν άλλο φάκελο B, ο αρχικός φάκελος όπως και ο
+	τελικός είναι τα δύο endpoints της δρομολόγησης (route) που θα ορίσουμε. </p>
+
+<p>Όμως κάθε endpoint έχει να διαχειριστεί πάρα πολλές και διαφορετικές μορφές δεδομένων. Στο δικό μας παράδειγμα, η
+	μορφή των δεδομένων είναι ένα αρχείο. Σε άλλη περίπτωση μπορεί να ήταν ένα JSON αποτέλεσμα ενός καλέσματος σε ένα
+	REST API. Για να μπορέσει λοιπόν το Apache Camel να ανταπεξέλθει σε όλη αυτή την διαφορετικότητα της μορφής των
+	δεδομένων, αλλά και για να μην επιβαρύνει τον προγραμματιστή με επιπρόσθετο κώδικα, δημιούργησε μια βιβλιοθήκη με
+	components. Αυτή η βιβλιοθήκη αναβαθμίζεται συνεχώς και η λίστα με τα components μεγαλώνει. Οπότε για το δικό μας
+	παράδειγμα που είναι η μεταφορά ενός αρχείου υπάρχει το component FILE
+	<a href="https://camel.apache.org/components/latest/file-component.html">
+		<font color="#0000CC">(https://camel.apache.org/components/latest/file-component.html)</font>
+	</a>. </p>
+	<img src="apache-camel-unit1/apache-camel-unit1-7.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
+	<p></p>
+
+<p>Κάθε component όπως και αυτό του FILE περιέχει παραμέτρους για να πετύχουν με απλό τρόπο το επιθυμητό αποτέλεσμα.</p>
+
+	<img src="apache-camel-unit1/apache-camel-unit1-8.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
+	<p></p>
+
+<p>Στο δικό μας παράδειγμα, θέλουμε όταν μεταφερθεί το αρχείο από τον φάκελλο Α στον Β, να μην υπάρχει αντίγραφο του
+	αρχικού αρχείου στο φάκελλο Α. Για να το καταφέρουμε αυτό, ορίζουμε την παράμετρο delete και την θέτουμε ίσον με
+	true όπως δείχνει και το παράδειγμα από το documentation του Apache Camel.</p>
+
+	<img src="apache-camel-unit1/apache-camel-unit1-9.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
+	<p></p>
+
+<p>Για να ανακεφαλαιώσουμε όλα όσα έχουμε πει ας δούμε ποιο είναι το επιθυμητό σενάριο. Θέλουμε λοιπόν να μεταφέρουμε
+	ένα αρχείο από τον φάκελλο Α στον φάκελλο Β. Για να το καταφέρουμε αυτό με το λιγότερο δυνατόν κώδικα,
+	χρησιμοποιούμε το Apache Camel. Για να λειτουργήσει το Apache Camel χρειάζεται να ορίσουμε σωστά τα endpoint
+	components που στο δικό μας παράδειγμα είναι η τοποθεσία των φακέλλων. Ψάχνοντας στην βιβλιοθήκη του Apache Camel
+	βρίσκουμε ότι το component που μπορεί εύκολα να υλοποιήσει την μεταφορά ονομάζεται FILE. Αυτό τώρα που έχουμε να
+	κάνουμε είναι να γράψουμε τον Java κώδικα που θα ορίζει το route (την δρομολόγηση) της μεταφοράς του αρχείου.</p>
+
+<p>Για να γράψουμε Apache Camel routes πρέπει να δημιουργήσουμε μια δική μας κλάση η οποία κληρονομεί από την κλάση
+	<strong>RouteBuilder</strong> τoυ Camel. Αυτή η κληρονομικότητα μας αναγκάζει να γράψουμε τον κώδικα μας μέσα σε μια μέθοδο με το
+	όνομα <strong>configure</strong>. Ο κώδικας που θα γράψουμε θα περιγράφουν τα routes κάνοντας χρήση του DSL. Σαν DSL ορίζουμε την
+	domain-specific γλώσσα που μας επιτρέπει το Apache Camel να χρησιμοποιούμε για να συνδέσουμε με εύκολο τρόπο όλα τα
+	components από το οποίο αποτελείται ένα route. Ας δούμε όμως την υλοποίηση του κώδικα για να κατανοήσουμε λίγο
+	καλύτερα την θεωρία.</p>
+
+<p>Μέσα στο πακέτο <strong>com.example.FileCopy</strong> δημιουργούμε μια κλάση που την ονομάζουμε MyRoutes. Μέσα στην κλάση γράφουμε τον
+	εξής κώδικα:</p>
+
+<p><strong>MyRoutes.java</strong></p>
+
+<pre class="prettyprint"><xmp>
+package com.example.FileCopy;
+
+import org.apache.camel.builder.RouteBuilder;
+
+
+public class MyRoutes extends RouteBuilder {
+
+	@Override
+	public void configure() throws Exception {
+	from("file:C:\\testdata1?delete=true").to("file:C:\\testdata2");
+
+	}
+}
+		</xmp></pre>
+
+<p>Αυτή είναι η πιο απλή και βασική μορφή ενός Apache Camel Route χρησιμοποιώντας Java DSL. Απαραίτητη προϋπόθεση είναι
+	η κλάση μας MyRoutes να κληρονομεί από την RouteBuilder. Μέσα στην μέθοδο configure( ) ερχόμαστε να ορίσουμε το
+	route που αποτελείται από δύο FILE endpoint componts. Το αρχικό σημείο, όπως απαιτεί η DSL ξεκινάει με την λέξη <strong>from</strong>
+	ενώ το τελικό με την λέξη <strong>το</strong>. Οι φάκελλοι πρέπει να υπάρχουν ήδη στον σκληρό σας δίσκο για να μπορεί να λειτουργήσει
+	το route. Επίσης για να μην κρατάει αντίγραφο του αρχείου το Camel ορίσαμε την παράμετρο delete=true.</p>
+
+<p>Τρέχουμε πάλι την εντολή <strong>mvn clean install</strong> γιατί έχουμε προσθέσει κώδικα στο project μας. Επειδή χρησιμοποιήσαμε
+	microprofile, μέσα στο target φάκελλο θα δείτε ότι η εφαρμογή μας όπως και ο TomEE έχουν πακεταριστεί μέσα σε ένα
+	εκτελέσιμο FileCopy-exec.jar αρχείο. Δεν έχουμε παρά να τρέξουμε αυτό το αρχείο από το terminal και ο TomEE αφού
+	ξεκινήσει θα αρχίσει η ενεργοποίηση του Route.</p>
+
+	<img src="apache-camel-unit1/apache-camel-unit1-10.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
+	<p></p>
+
+<img src="apache-camel-unit1/apache-camel-unit1-11.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
+<p></p>
+
+<img src="apache-camel-unit1/apache-camel-unit1-12.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
+<p></p>
+
+
+<p>Τώρα που τρέχει η εφαρμογή μας, ότι αρχείο τοποθετούμε μέσα στο testdata1 αυτόματα μεταφέρεται στο testdata2. Επειδή
+	έχουμε ορίσει delete=true, το Apache Camel δεν θα κρατήσει αντίγραφο του αρχικού αρχείου μέσα στο φάκελο .camel.</p>
+
+<p>Για το επόμενο δωρεάν μάθημα Apache Camel μπορείτε να κάνετε copy-paste αυτό το project σε έναν καινούργιο φάκελλο
+	και να δημιουργήσετε ένα καινούργιο Apache Camel project ή να ακολουθήσετε όλη την διαδικασία από την αρχή. Αυτό που
+	σίγουρα θα προστεθούν είναι έξτρα dependencies στο POM.xml αρχείο για τα οποία θα μιλήσουμε αναλυτικά και θα δούμε
+	βήμα προς βήμα πως ορίζονται.</p>
+<!-- ###################################################################################################-->												
+									
+						
+								</div>
+							</div>
+						</div>
+									<center><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick" />
+<input type="hidden" name="hosted_button_id" value="GQD77W6K672RA" />
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+<img alt="" border="0" src="https://www.paypal.com/en_GR/i/scr/pixel.gif" width="1" height="1" />
+</form></center>
+						<!--<div class="row row-pb-lg animate-box">
+							<div class="col-md-12">
+								<h2 class="colorlib-heading-2">23 Comments</h2>
+								<div class="review">
+						   		<div class="user-img" style="background-image: url(images/person1.jpg)"></div>
+						   		<div class="desc">
+						   			<h4>
+						   				<span class="text-left">Jacob Webb</span>
+						   				<span class="text-right">24 March 2018</span>
+						   			</h4>
+						   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
+						   			<p class="star">
+					   					<span class="text-left"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
+						   			</p>
+						   		</div>
+						   	</div>
+						   	<div class="review">
+						   		<div class="user-img" style="background-image: url(images/person2.jpg)"></div>
+						   		<div class="desc">
+						   			<h4>
+						   				<span class="text-left">Jacob Webb</span>
+						   				<span class="text-right">24 March 2018</span>
+						   			</h4>
+						   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
+						   			<p class="star">
+					   					<span class="text-left"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
+						   			</p>
+						   		</div>
+						   	</div>
+						   	<div class="review">
+						   		<div class="user-img" style="background-image: url(images/person3.jpg)"></div>
+						   		<div class="desc">
+						   			<h4>
+						   				<span class="text-left">Jacob Webb</span>
+						   				<span class="text-right">24 March 2018</span>
+						   			</h4>
+						   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
+						   			<p class="star">
+					   					<span class="text-left"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
+						   			</p>
+						   		</div>
+						   	</div>
+							</div>
+						</div>-->
+
+						<!--<div class="row animate-box">
+							<div class="col-md-12">
+								<h2 class="colorlib-heading-2">Say something</h2>
+								<form action="#">
+									<div class="row form-group">
+										<div class="col-md-6">
+											<!-- <label for="fname">First Name</label> -->
+						<!--		<input type="text" id="fname" class="form-control" placeholder="Your firstname">
+										</div>
+										<div class="col-md-6">
+											<!-- <label for="lname">Last Name</label> -->
+						<!--<input type="text" id="lname" class="form-control" placeholder="Your lastname">
+										</div>
+									</div>
+
+									<div class="row form-group">
+										<div class="col-md-12">
+											<!-- <label for="email">Email</label> -->
+						<!--<input type="text" id="email" class="form-control" placeholder="Your email address">
+										</div>
+									</div>
+
+									<div class="row form-group">
+										<div class="col-md-12">
+											<!-- <label for="subject">Subject</label> -->
+						<!--<input type="text" id="subject" class="form-control" placeholder="Your subject of this message">
+										</div>
+									</div>
+
+									<div class="row form-group">
+										<div class="col-md-12">
+											<!-- <label for="message">Message</label> -->
+						<!--	<textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Say something about us"></textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<input type="submit" value="Post Comment" class="btn btn-primary">
+									</div>
+								</form>	
+							</div>
+						</div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--<div id="colorlib-subscribe" class="subs-img" style="background-image: url(images/img_bg_2.jpg);" data-stellar-background-ratio="0.5">
+			<div class="overlay"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 text-center colorlib-heading animate-box">
+						<h2>Subscribe Newsletter</h2>
+						<p>Subscribe our newsletter and get latest update</p>
+					</div>
+				</div>
+				<div class="row animate-box">
+					<div class="col-md-6 col-md-offset-3">
+						<div class="row">
+							<div class="col-md-12">
+							<form class="form-inline qbstp-header-subscribe">
+								<div class="col-three-forth">
+									<div class="form-group">
+										<input type="text" class="form-control" id="email" placeholder="Enter your email">
+									</div>
+								</div>
+								<div class="col-one-third">
+									<div class="form-group">
+										<button type="submit" class="btn btn-primary">Subscribe Now</button>
+									</div>
+								</div>
+							</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>-->
+		<footer id="colorlib-footer">
+			<div class="container">
+				<div class="row row-pb-md">
+					<div class="col-md-3 colorlib-widget">
+						<h4>PURPOSE</h4>
+						<p>Ο πρωταρχικός λόγος που με ώθησε στο να δημιουργήσω αυτή την
+							ιστοσελίδα και να προσφέρω δωρεάν μαθήματα είναι γιατί πιστεύω ότι
+							η γνώση, σε οποιοδήποτε επίπεδο, πρέπει να μεταδίδεται για να έχει αξία.</p>
+						<p>
+						<ul class="colorlib-social-icons">
+							<!--<li><a href="#"><i class="icon-twitter"></i></a></li>-->
+							<li><a href="https://www.facebook.com/kassapoglou/?ref=bookmarks"><i
+									class="icon-facebook"></i></a></li>
+							<li><a href="https://www.linkedin.com/groups/4390739/"><i
+									class="icon-linkedin"></i></a></li>
+							<!--<li><a href="#"><i class="icon-dribbble"></i></a></li>-->
+						</ul>
+						</p>
+					</div>
+					<div class="col-md-3 colorlib-widget">
+						<h4>Quick Links</h4>
+						<p>
+						<ul class="colorlib-footer-links">
+							<!--<li><a href="#"><i class="icon-check"></i> About</a></li>-->
+							<!--<li><a href="#"><i class="icon-check"></i> Testimonials</a></li>-->
+							<li><a href="https://kassapoglou.github.io/main/"><i class="icon-check"></i>
+								Home</a></li>
+							<li><a href="https://kassapoglou.github.io/camel/apache-camel-programming.html"><i
+									class="icon-check"></i> APACHE CAMEL Programming</a></li>
+							<li><a href="https://kassapoglou.github.io/main/courses.html"><i
+									class="icon-check"></i> Courses</a></li>
+							<!--<li><a href="#"><i class="icon-check"></i> Event</a></li>
+                        <li><a href="#"><i class="icon-check"></i> News</a></li>-->
+							<li><a href="https://kassapoglou.github.io/main/contact.html"><i
+									class="icon-check"></i> Contact</a></li>
+						</ul>
+						</p>
+					</div>
+
+					<!--<div class="col-md-3 colorlib-widget">
+                    <h4>Recent Post</h4>
+                    <div class="f-blog">
+                        <a href="blog.html" class="blog-img" style="background-image: url(images/blog-1.jpg);">
+                        </a>
+                        <div class="desc">
+                            <h2><a href="blog.html">Creating Mobile Apps</a></h2>
+                            <p class="admin"><span>18 April 2018</span></p>
+                        </div>
+                    </div>
+                    <div class="f-blog">
+                        <a href="blog.html" class="blog-img" style="background-image: url(images/blog-2.jpg);">
+                        </a>
+                        <div class="desc">
+                            <h2><a href="blog.html">Creating Mobile Apps</a></h2>
+                            <p class="admin"><span>18 April 2018</span></p>
+                        </div>
+                    </div>
+                    <div class="f-blog">
+                        <a href="blog.html" class="blog-img" style="background-image: url(images/blog-3.jpg);">
+                        </a>
+                        <div class="desc">
+                            <h2><a href="blog.html">Creating Mobile Apps</a></h2>
+                            <p class="admin"><span>18 April 2018</span></p>
+                        </div>
+                    </div>
+                </div> -->
+
+					<div class="col-md-3 colorlib-widget">
+						<h4>Contact Info</h4>
+						<ul class="colorlib-footer-links">
+
+							<li><a href="tel://6976434707"><i class="icon-phone"></i> 6976434707</a></li>
+							<li><a href="mailto:michail.kassapoglou@gmail.com"><i class="icon-envelope"></i>
+								michail.kassapoglou@gmail.com</a></li>
+							<li><a href="kassapoglou.github.io/main"><i class="icon-location4"></i>
+								kassapoglou.github.io/main</a></li>
+							<li><a href="https://www.facebook.com/kassapoglou/?ref=bookmarks"><i
+									class="icon-facebook2"></i> Facebook</a></li>
+							<li><a href="https://www.linkedin.com/groups/4390739/"><i class="icon-linkedin"></i>
+								Linkedin</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="copy">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<p>
+								<small class="block">&copy;
+									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+									Copyright &copy;<script>
+										document.write(new Date().getFullYear());
+									</script> All rights reserved | This template is made with <i class="icon-heart"
+																								  aria-hidden="true"></i> by <a href="https://colorlib.com"
+																																target="_blank">Colorlib</a>
+									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								</small><br>
+								<small class="block">Demo Images: <a href="http://unsplash.co/"
+																	 target="_blank">Unsplash</a>, <a href="http://pexels.com/"
+																									  target="_blank">Pexels</a></small>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>
+	</div>
+
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<!-- Stellar Parallax -->
+	<script src="js/jquery.stellar.min.js"></script>
+	<!-- Flexslider -->
+	<script src="js/jquery.flexslider-min.js"></script>
+	<!-- Owl carousel -->
+	<script src="js/owl.carousel.min.js"></script>
+	<!-- Magnific Popup -->
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/magnific-popup-options.js"></script>
+	<!-- Counters -->
+	<script src="js/jquery.countTo.js"></script>
+	<!-- Main -->
+	<script src="js/main.js"></script>
+
+</body>
+
+</html></html>
