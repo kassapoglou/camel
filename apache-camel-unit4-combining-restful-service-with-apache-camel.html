@@ -144,7 +144,7 @@
 								<div class="col-md-6 col-sm-12 col-md-offset-3 slider-text">
 									<div class="slider-text-inner text-center">
 										<h1><STRONG>ΜΑΘΑΙΝΩ ΔΩΡΕΑΝ APACHE CAMEL</STRONG></h1>
-										<h2><strong>ΕΝΟΤΗΤΑ 3 - EXCHANGE AND PROCESSOR</strong></h2>
+										<h2><strong>ΕΝΟΤΗΤΑ 4 - COMBINING RESTFUL SERVICE WITH APACHE CAMEL</strong></h2>
 										<h2><strong><span><a href="https://kassapoglou.github.io/main/index.html">Home</a> | <a
 													href="https://kassapoglou.github.io/main/courses.html">Courses</a> |
 											<a href="https://kassapoglou.github.io/camel/apache-camel-programming.html">APACHE CAMEL PROGRAMMING</a></span></strong></h2>
@@ -169,7 +169,7 @@
 									</div>
 									<div class="desc desc2">
 										<h3 align="center"><a
-												href="https://kassapoglou.github.io/java/java-programming.html">ΕΝΟΤΗΤΑ 3 APACHE CAMEL - EXCHANGE AND PROCESSOR</a></h3>
+												href="https://kassapoglou.github.io/java/java-programming.html">ΕΝΟΤΗΤΑ 4 APACHE CAMEL - COMBINING RESTFUL SERVICE WITH APACHE CAMEL</a></h3>
 												<center>
 													<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 														<input type="hidden" name="cmd" value="_s-xclick" />
@@ -180,199 +180,354 @@
 													</form>
 												</center>
 
-<p>Στο σημερινό δωρεάν μάθημα Apache Camel θα εξηγήσουμε τι ακριβώς είναι το <strong>Exchange</strong> και τα <strong>Exchange patterns</strong> και πως
-χρησιμοποιούμε το Exchange σε συνδυασμό με τον <strong>Processor</strong>. Αυτές είναι δύο καινούργιες έννοιες που πρέπει να προσθέσουμε
-στην θεωρία μας για να κατανοήσουμε καλύτερα την ανταλλαγή μηνυμάτων όπως και την δυνατότητα παρέμβασης σε αυτά.</p>
 
-<p>Όπως ήδη έχουμε αναλύσει από την προηγούμενη ενότητα, η επικοινωνία ανάμεσα στα components όπως και ανάμεσα σε
-διαφορετικά συστήματα γίνεται μέσω μηνυμάτων. Ένα τέτοιο μήνυμα στείλαμε και σε ένα εξωτερικό broker αφού πρώτα
-διαβάσαμε το περιεχόμενο από ένα text αρχείο.</p>
+<p>Στο σημερινό δωρεάν μάθημα Apache Camel θα δούμε πως μπορούμε να στείλουμε δεδομένα από ένα RESTful service σε ένα
+Apache Camel route. Για να μπορέσουμε να πετύχουμε το επιθυμητό αποτέλεσμα θα πρέπει να μιλήσουμε για το <strong>CamelContext</strong>,
+για το <strong>ProducerTemplate</strong> και για το <strong>VM</strong> component.</p>
 
-<p>Το Apache Camel δεν μεταφέρει άμεσα το μήνυμα. Ο κύριος λόγος είναι ότι ένα μήνυμα ρέει μόνο προς μια κατεύθυνση. Όταν
-ασχολούμαστε με μηνύματα, υπάρχουν πολλά μοτίβα ανταλλαγής μηνυμάτων (<strong>Message Exchange Patterns</strong> ή <strong>MEP</strong>) που μπορούμε να
-χρησιμοποιήσουμε.</p>
+<p>Στην προηγούμενη ενότητα είχαμε δει πως μπορούμε να διαβάζουμε αρχεία, από δύο διαφορετικούς φακέλους, και να στέλνουμε
+τις πληροφορίες στο ίδιο direct component για να καταλήξει σε ένα queue. Επίσης είχαμε δει πως να κάνουμε παρεμβάσεις
+στο μήνυμα με τους Processors. Επάνω σε αυτόν τον κώδικα θα κάνουμε κάποιες τροποποιήσεις για να επικοινωνήσει ένα
+RESTful service που θα δημιουργήσουμε με το direct component. Επίσης, το γεγονός ότι έχουμε αναπτύξει το πρόγραμμα μας
+στην πλατφόρμα του microprofile, θα μας φανεί χρήσιμο διότι περιέχει ήδη όλες τις απαραίτητες Java ΕΕ 8 βιβλιοθήκες για
+την δημιουργία RESTful services.</p>
 
-<p>Ανάλογα με τις περιπτώσεις χρήσης, μπορούμε να στείλουμε ένα μήνυμα χωρίς να περιμένουμε απάντηση από τον τελικό
-προορισμό – αυτό το μοτίβο ονομάζεται <strong>event message</strong> και χρησιμοποιεί το <strong>InOnly</strong> MEP. Για παράδειγμα, όταν διαβάζετε ένα
-αρχείο, όπως κάναμε στην προηγούμενη ενότητα, επεξεργαζόμαστε απλώς το περιεχόμενο του αρχείου χωρίς να περιμένουμε
-κάποια απάντηση πίσω από το File component που διαβάζει το αρχείο. Σε αυτή την περίπτωση, το component που είναι
-υπεύθυνο για την ανάγνωση του αρχείου θα καθορίσει ένα InOnly MEP.</p>
+<p>Για αρχή θα χρειαστεί να δημιουργήσουμε ένα απλό RESTful service. Για αυτό το σκοπό θα χρειαστούμε τρεις κλάσεις. Η
+πρώτη θα ενεργοποιεί το RESTful service, η δεύτερη θα έχει τον κώδικα που θα εκτελείται κάθε φορά που καλούμε το
+service, ενώ η τρίτη θα δημιουργεί αντικείμενα είδος Customer. Δεν θα μπούμε σε λεπτομέρειες για το πως ακριβώς δουλεύει
+ένα RESTful service. Μπορείτε να διαβάσετε το Jakarta EE 8 documentation για αυτό. Εδώ απλά χρησιμοποιούμε το RESTful
+service για να δείξουμε τι επιπλέον κώδικας χρειάζεται για να καλέσουμε ένα Apache Camel route μέσα από αυτό.</p>
 
-<p>Από την άλλη, μπορεί να θέλετε να εφαρμόσετε ένα μοτίβο αιτήματος-απάντησης όπου ένα μήνυμα απόκρισης πρέπει να
-επιστραφεί στον αποστολέα του μηνύματος. Σε αυτή την περίπτωση θα χρησιμοποιήσουμε ένα <strong>InOut</strong> MEP. Για παράδειγμα,
-σκεφτείτε ένα αίτημα σε ένα Web Service όπου ένα response θα πρέπει να επιστραφεί πίσω σε εκείνον που έκανε το αίτημα.</p>
+<p>Δημιουργούμε μια κλάση με το όνομα <strong>JAXRSApplication</strong>. Το όνομα δεν έχει σημασία. Αυτό όμως που έχει σημασία είναι ότι για
+να ενεργοποιηθεί ένα RESTful service θα πρέπει η κλάση να κληρονομεί από την κλάση Application. Επίσης, με το annotation
+@ApplicationPath δηλώνουμε το root URL στο οποίο μπορούμε να στέλνουμε τα αιτήματα μας. Ο κώδικας της κλάσης
+JAXRSApplication είναι ο εξής:</p>
 
-<p>Αν θέλετε να βρείτε περισσότερες πληροφορίες για το message exchange μπορείτε να δείτε το Apache Camel documention:</p>
-<p><a href="https://camel.apache.org/manual/latest/exchange.html">
-	<font color="#0000CC">https://camel.apache.org/manual/latest/exchange.html</font>
-</a></p>
-
-<img src="apache-camel-unit3/apache-camel3-1.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
-<p></p>
-
-<p><a href="https://camel.apache.org/manual/latest/exchange-pattern.html">
-		<font color="#0000CC">https://camel.apache.org/manual/latest/exchange-pattern.html</font>
-	</a></p>
-
-<img src="apache-camel-unit3/apache-camel3-2.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
-<p></p>
-
-<p>Καθώς λοιπόν το μήνυμα ρέει προς μία μόνο κατεύθυνση, προκειμένου το Apache Camel να υποστηρίξει διαφορετικά MEPs, μας
-προσφέρει δύο μηνύματα:</p>
-<p>- Το πρώτο μήνυμα είναι υποχρεωτικό καθώς είναι το <strong>in</strong> μήνυμα.</p>
-<p>- Το δεύτερο μήνυμα είναι προαιρετικό (ανάλογα με το MEP) καθώς είναι το <strong>out</strong> μήνυμα.</p>
-
-<p>Για αυτό ακριβώς το λόγο το Apache Camel τυλίγει όλα τα μηνύματα σε ένα Exchange αντικείμενο. Στην ουσία, το πραγματικό
-αντικείμενο που μεταφέρεται είναι το Exchange, ενεργώντας σαν container μηνυμάτων με όλα τα meta-data που απαιτούνται
-για την δρομολόγηση.</p>
-
-<p>Βασικά μια ανταλλαγή μηνυμάτων περιέχει τα ακόλουθα:</p>
-<p><strong>- Exchange ID:</strong> Αναγνωριστικό ανταλλαγής ως String. Αυτό είναι ένα μοναδικό αναγνωριστικό που δημιουργεί αυτόματα το
-Apache Camel για εμάς.</p>
-<p><strong>- MEP:</strong> Το μοτίβο ανταλλαγής μηνυμάτων (MEP) καθορίζει το μοτίβο ανταλλαγής</p>
-<p><strong>- Exception:</strong> Αποθηκεύει την τρέχουσα αιτία μιας αποτυχημένης ανταλλαγής. Εάν παρουσιαστεί σφάλμα ανά πάσα στιγμή κατά τη
-δρομολόγηση, τότε θα αποθηκευτεί σε αυτό το πεδίο.</p>
-<p><strong>-Properties:</strong> Οι ιδιότητες είναι ένα Map<String, Object> που υπάρχουν κατά τη διάρκεια ολόκληρης της εκτέλεσης ανταλλαγής
-	άσχετα αν το μήνυμα μπορεί να αλλάξει κατά τη δρομολόγηση. Αυτό είναι και η διαφορά τους με τα message headers που
-	περιορίζονται μόνο στην διάρκεια ζωής του μηνύματος.</p>
-<p><strong>- In Message:</strong> Το in message είναι υποχρεωτικό και είναι πάντα ενεργοποιημένο. Είναι το μόνο μήνυμα που συμπληρώνεται
-στην ανταλλαγή με το InOnly MEP.</p>
-<p><strong>- Out Message:</strong> Το Out Message είναι προαιρετικό και χρησιμοποιείται μόνο με το InOut MEP.</p>
-
-<img src="apache-camel-unit3/apache-camel3-3.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
-<p></p>
-
-<p>Τώρα που γνωρίζουμε τι ακριβώς είναι Exchange αντικείμενο ας δούμε πως μπορούμε να το χρησιμοποιήσουμε μέσω ενός
-processor. Αλλά τι είναι ένας processor?
-</p>
-
-<p>Ο <strong>processor</strong> είναι ένα βασικό στοιχείο του Apache Camel που αντιπροσωπεύει ένα node που μπορεί να χρησιμοποιήσει, να
-δημιουργήσει ή να τροποποίηση μια εισερχόμενη ανταλλαγή. Κατά τη διάρκεια εκτέλεσης ενός route, exchanges ρέουν από έναν
-processor σε έναν άλλο.</p>
-
-<img src="apache-camel-unit3/apache-camel3-4.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
-<p></p>
-
-<p>Ένα route ξεκινάει πρώτα από τον consumer που δέχεται ένα event (στο δικό μας παράδειγμα είναι ένα αρχείο) και
-δημιουργεί ένα Exchange. Το route μεταφέρει αυτό το Exchange από τον ένα processor στον άλλον έως το τελικό σημείο ή
-component. Είναι πιθανόν το route να τελειώνει σε έναν processor που επιστρέφει το Exchange πίσω στον consumer εάν έχει
-οριστεί σαν InOut ή σταματάει στο τελικό σημείο εάν οριστεί InOnly. Καταλαβαίνουμε λοιπόν ότι ένας processor, αφού λάβει
-το Exchange το τροποποιεί και τελικά το ενημερώνει ή το αναβαθμίζει με πληροφορίες. Στην πραγματικότητα όλα τα Exchange
-Integration Patterns (EIPS) του Apache Camel υλοποιούνται χρησιμοποιώντας processors.</p>
-
-<img src="apache-camel-unit3/apache-camel3-5.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
-<p></p>
-
-<p>Ο processor περιγράφεται από το <strong>org.apache.camel.Processor</strong> interface το οποίο περιέχει μια και μοναδική μέθοδο την
-<strong>process</strong>.</p>
-
-<p><a href="https://www.javadoc.io/doc/org.apache.camel/camel-api/latest/org/apache/camel/Processor.html">
-		<font color="#0000CC">https://www.javadoc.io/doc/org.apache.camel/camel-api/latest/org/apache/camel/Processor.html</font>
-	</a></p>
-
-<img src="apache-camel-unit3/apache-camel3-6.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
-<p></p>
-
-<p>Για να υλοποιήσουμε έναν processor έχουμε δύο επιλογές σύμφωνα με το documentation. Μπορείτε να γράψουμε μια δική μας
-κλάση που κάνει implements το interface Processor</p>
-
-<p><a href="https://camel.apache.org/manual/latest/processor.html ">
-		<font color="#0000CC">
-			https://camel.apache.org/manual/latest/processor.html</font>
-	</a></p>
-
-<img src="apache-camel-unit3/apache-camel3-7.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
-<p></p>
-
-<p>Ή μπορούμε να χρησιμοποιήσουμε έναν processor στο route δημιουργώντας μια anonymous inner class.</p>
-
-<p><a href="https://camel.apache.org/manual/latest/processor.html ">
-		<font color="#0000CC">
-			https://camel.apache.org/manual/latest/processor.html</font>
-	</a></p>
-
-<img src="apache-camel-unit3/apache-camel3-8.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
-<p></p>
-
-<p>Στα δικά μας παραδείγματα θα χρησιμοποιήσουμε τον δεύτερο τρόπο. Ας δούμε λοιπόν πως μπορούμε να προσθέσουμε έναν
-processor στο Camel Route που είχαμε δημιουργήσει στην προηγούμενη ενότητα.</p>
-
-<p>Στο παράδειγμα μας, στέλναμε ένα text μήνυμα σε ένα εξωτερικό broker που είχαμε λάβει διαβάζοντας ένα text αρχείο που
-βρισκόταν είτε μέσα στο φάκελλο testdata1 είτε μέσα στο φάκελλο testdata2. Τώρα θέλουμε, πριν στείλουμε το μήνυμα στο
-direct component, να παρέμβουμε και να προσθέσουμε επίσης ένα ενημερωτικό μήνυμα όπως “Message from testdata1” έτσι ώστε
-να γνωρίζουμε από που προήλθε το μήνυμα. Ο κώδικας λοιπόν θα είναι ο εξής:</p>
-
-<p><strong>MyRouteBuilder.java</strong></p>
+<p><strong>JAXRSApplication.java</strong></p>
 
 <pre class="prettyprint"><xmp>
-import javax.inject.Inject;
-import org.apache.activemq.artemis.jms.client.ActiveMQConnectionFactory;
-import org.apache.camel.CamelContext;
-import org.apache.camel.Exchange;
-import org.apache.camel.Processor;
-import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.component.sjms.SjmsComponent;
+package com.example;
 
-public class MyRouteBuilder extends RouteBuilder {
+import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
 
-    @Inject
-    private CamelContext camel;
+@ApplicationPath("resources")
+public class JAXRSApplication extends Application {
 
-    SjmsComponent component = new SjmsComponent();
+}
+</xmp></pre>
 
-    @Override
-    public void configure() {
-        component.setConnectionFactory(new ActiveMQConnectionFactory("tcp://localhost:61616"));
-        camel.addComponent("sjms", component);
+<p>Ας δημιουργήσουμε τώρα την κλάση που περιγράφει έναν Customer. Θα κρατήσουμε τον κώδικα σε πολύ απλή μορφή οπότε έναν
+Customer τον περιγράφουμε με ένα id, με το όνομα και το επίθετο. Ο κώδικας της κλάσης Customer είναι ο εξής:</p>
 
-        from("file:C:\\testdata1").
-            process(new Processor() {
-            public void process(Exchange exchange) throws Exception {
-                String inBody = exchange.getIn().getBody(String.class);
-                inBody = "Message from testdata1 : " + inBody;
-                exchange.getIn().setBody(inBody);
-            }
-            }).
-        to("direct:start");
-        
-        from("file:C:\\testdata2").process(new Processor() {
-            public void process(Exchange exchange) throws Exception {
-                String inBody = exchange.getIn().getBody(String.class);
-                inBody = "Message from testdata2 : " + inBody;
-                exchange.getIn().setBody(inBody);
-            }
-        }).to("direct:start");
+<p><strong>Customer.java</strong></p>
 
-        from("direct:start").to("sjms:queue:myqueue");
-    }
+<pre class="prettyprint"><xmp>
+package com.example;
+
+public class Customer {
+	private int id;
+
+	private String first;
+
+	private String last;
+
+	public String getLastName() {
+	return last;
+	}
+
+	public void setLastName(String last) {
+	this.last = last;
+	}
+
+
+	public int getId() {
+	return id;
+	}
+
+	public void setId(int id) {
+	this.id = id;
+	}
+
+	public String getFirstName() {
+	return first;
+	}
+
+	public void setFirstName(String first) {
+	this.first = first;
+	}
+
+	@Override
+	public String toString(){
+	return this.id+" "+this.first+" "+this.last;
+	}
+
 }
 
-		</xmp></pre>
+</xmp></pre>
 
-<p>Το POM.xml αρχείο παραμένει το ίδιο.</p>
+<p>Τέλος, ας δημιουργήσουμε το ίδιο το web service το οποίο θα αποτελείται από δύο μεθόδους – μια <strong>@GET</strong> η οποία θα μας
+επιστρέφει όλες τις καταχωρήσεις που έχουμε κάνει στην βάση και μια <strong>@POST</strong> με την οποία θα προσθέτουμε καινούργιους
+customers. Για να κρατήσουμε τον κώδικα μας απλό, δεν θα ενωθούμε σε μια πραγματική βάση, αλλά θα χρησιμοποιήσουμε ένα
+Map.</p>
 
-<p>Το exchange αντικείμενο έχει αρκετές μεθόδους διαθέσιμες. Μια από αυτές είναι η <strong>getIn( )</strong> η οποία μας επιστρέφει το
-μήνυμα.</p>
+<p>Στην @POST μέθοδο, δεχόμαστε ένα input είδος String το οποίο μετατρέπουμε σε αντικείμενο Customer με την χρήση του
+JSON-B. Αφού αυξήσουμε το id κατά ένα, προσθέτουμε το αντικείμενο customer στο Map. Με την @GET μέθοδο διαβάζουμε ότι
+customers υπάρχουν μέσα στο Map και αφού μετατρέψουμε τα αντικείμενα σε JSON (πάλι χρησιμοποιώντας JSON-B) τα
+επιστρέφουμε σαν αποτέλεσμα του αιτήματος . Ας δούμε τον κώδικα και πως λειτουργεί μεμονωμένα αυτό το web service πριν
+το ενώσουμε με το Apache Camel.</p>
 
-<p><a href="https://www.javadoc.io/doc/org.apache.camel/camel-api/latest/org/apache/camel/Exchange.html ">
-		<font color="#0000CC">
-			https://www.javadoc.io/doc/org.apache.camel/camel-api/latest/org/apache/camel/Exchange.html</font>
+<p><strong>CustomerResource.java</strong></p>
+
+<pre class="prettyprint"><xmp>
+package com.example;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.net.URI;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
+
+@ApplicationScoped
+@Path("/customers")
+public class CustomerResource {
+private Map<Integer, Customer> customerDB = new ConcurrentHashMap<Integer, Customer>();
+		private AtomicInteger idCounter = new AtomicInteger();
+		String customerString;
+
+		public CustomerResource() {
+		}
+
+		@POST
+		@Consumes(MediaType.APPLICATION_JSON)
+		public Response createCustomer(String input) {
+
+		Jsonb jsonb = JsonbBuilder.create();
+		Customer customer = new Customer();
+		customer = jsonb.fromJson(input, Customer.class);
+		customer.setId(idCounter.incrementAndGet());
+		System.out.println(customer.toString());
+		customerDB.put(customer.getId(), customer);
+		System.out.println("Created customer " + customer.getId());
+		return Response.created(URI.create("/customers/" + customer.getId())).build();
+
+		}
+
+		@GET
+		@Produces(MediaType.APPLICATION_JSON)
+		public Response getCustomer() {
+		Jsonb jsonb = JsonbBuilder.create();
+		String result = jsonb.toJson(customerDB);
+		System.out.println(result);
+		return Response.ok(result).build();
+		}
+	}
+
+</xmp></pre>
+
+<img src="apache-camel-unit4/apache-camel4-1.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
+<p></p>
+
+<p>Τρέχουμε λοιπόν την εντολή <strong>mvn clean install</strong> για να χτιστεί το νέο jar με τον προστιθέμενο κώδικα και ξεκινάμε την
+εφαρμογή. Όταν ο Tomee Application Server είναι σε πλήρη λειτουργία, τότε χρησιμοποιώντας ένα εργαλείο όπως το Postman
+μπορούμε να καλέσουμε τα web services.</p>
+
+<img src="apache-camel-unit4/apache-camel4-2.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
+<p></p>
+
+<img src="apache-camel-unit4/apache-camel4-3.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
+<p></p>
+
+<p>Αφού λοιπόν έχουμε το Web Service σε λειτουργία, τώρα επιθυμούμε να στείλουμε το JSON input και στο Apache Camel route
+για να αποθηκευτεί στο queue. Ένας από τους λόγους που θέλουμε να το κάνουμε αυτό ίσως είναι γιατί αυτή την πληροφορία
+την περιμένει ένα άλλο σύστημα που ασύγχρονα μέσα από το queue ενεργοποιείται κάθε φορά που υπάρχει καινούργιο
+εισερχόμενο μήνυμα.</p>
+
+<p>Για να κατορθώσουμε να επικοινωνήσουμε από την εφαρμογή μας με το Apache Camel γενικότερα, θα χρειαστεί να κάνουμε
+inject ένα αντικείμενο είδος <strong>CamelContext</strong>. Μην ξεχνάτε, ότι και σε προηγούμενη ενότητα, όπου θέλαμε να μιλήσουμε με έναν
+εξωτερικό broker, το component sjms που είχαμε δημιουργήσει το δηλώσαμε πρώτα στο CamelContext πριν το χρησιμοποιήσουμε.
+Ο λόγος είναι γιατί το CamelContext είναι ο κεντρικός μηχανισμός που ελέγχει όλη την λειτουργία του Apache Camel.
+Οτιδήποτε και αν προσπαθήσουμε να δημιουργήσουμε θα πρέπει να είναι δηλωμένο πρώτα στο CamelContext και μετά να
+χρησιμοποιηθεί στον κώδικα.</p>
+
+<p>Μια από τις πολλές ιδιότητες του CamelContext, από την στιγμή που το κάνουμε inject στον κώδικα μας, είναι και η
+δημιουργία ενός <strong>ProducerTemplate</strong>. Το ProducerTemplate μας δίνει την δυνατότητα να στέλνουμε μηνύματα σε endpoints. Οπότε
+είναι ακριβώς αυτό που αναζητάμε. Το μήνυμα που θέλουμε να στείλουμε είναι το JSON input από τον χρήστη, ενώ το endpoint
+το έχουμε ήδη και είναι το <strong>direct:start</strong>.</p>
+
+<p><a href="https://camel.apache.org/manual/latest/producertemplate.html">
+		<font color="#0000CC">https://camel.apache.org/manual/latest/producertemplate.html</font>
 	</a></p>
 
-<img src="apache-camel-unit3/apache-camel3-9.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
+<img src="apache-camel-unit4/apache-camel4-4.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
 <p></p>
 
-<p>Μετά ορίζουμε ότι το μήνυμα θα περιέχει String πληροφορία. Τέλος, αφού προσθέσουμε την έξτρα πληροφορία που θέλουμε στο
-αρχικό μήνυμα, με την μέθοδο setBody( ) ορίζουμε ποιο θα είναι το νέο μήνυμα που θα σταλθεί στο direct component.</p>
+<p>Ας δούμε λοιπόν πως αλλάζει ο κώδικας στην κλάση CustomerResource.</p>
 
-<p>Αν βάλουμε ένα text αρχείο μέσα σε έναν από τους δύο φακέλλους, το μήνυμα που θα βρείτε μέσα στο broker θα περιέχει την
-αρχική πληροφορία συν την πληροφορία που έχουμε προσθέσει μέσω του processor.</p>
+<p><strong>CustomerResource.java</strong></p>
 
-<img src="apache-camel-unit3/apache-camel3-10.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
+<pre class="prettyprint"><xmp>
+package com.example;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.net.URI;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
+import javax.inject.Inject;
+import org.apache.camel.CamelContext;
+import org.apache.camel.ProducerTemplate;
+
+@ApplicationScoped
+@Path("/customers")
+public class CustomerResource {
+private Map<Integer, Customer> customerDB = new ConcurrentHashMap<Integer, Customer>();
+		private AtomicInteger idCounter = new AtomicInteger();
+		String customerString;
+
+		public CustomerResource() {
+		}
+
+		@Inject
+		private CamelContext camelctx;
+
+		@POST
+		@Consumes(MediaType.APPLICATION_JSON)
+		public Response createCustomer(String input) {
+
+		ProducerTemplate producer = camelctx.createProducerTemplate();
+		producer.sendBody("direct:start", input);
+
+		Jsonb jsonb = JsonbBuilder.create();
+		Customer customer = new Customer();
+		customer = jsonb.fromJson(input, Customer.class);
+		customer.setId(idCounter.incrementAndGet());
+		System.out.println(customer.toString());
+		customerDB.put(customer.getId(), customer);
+		System.out.println("Created customer " + customer.getId());
+		return Response.created(URI.create("/customers/" + customer.getId())).build();
+
+		}
+
+		@GET
+		@Produces(MediaType.APPLICATION_JSON)
+		public Response getCustomer() {
+		Jsonb jsonb = JsonbBuilder.create();
+		String result = jsonb.toJson(customerDB);
+		System.out.println(result);
+		return Response.ok(result).build();
+		}
+	}
+
+</xmp></pre>
+
+<P>Πριν όμως ξεκινήσουμε την εφαρμογή, ας κάνουμε ακόμα μια αλλαγή αλλά αυτή την φορά στο Apache Camel route. Μέχρι τώρα,
+σε όλα μας τα παραδείγματα χρησιμοποιούσαμε έναν εξωτερικό broker στου οποίου το queue στέλναμε τα μηνύματα μας. Κατά
+την διάρκεια ανάπτυξης κώδικα, ίσως δεν επιθυμείτε να σηκώσετε ένα εξωτερικό σύστημα, όπως έναν broker, για να
+δοκιμάσετε τον κώδικα σας. Το Apache Camel μας προσφέρει ένα εσωτερικό component που κάνει προσομοίωση ενός broker και
+ονομάζεται vm.</P>
+
+<p><a href="https://camel.apache.org/components/latest/vm-component.html ">
+		<font color="#0000CC">https://camel.apache.org/components/latest/vm-component.html</font>
+	</a></p>
+
+<img src="apache-camel-unit4/apache-camel4-5.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
 <p></p>
 
-<img src="apache-camel-unit3/apache-camel3-11.jpg" alt="Δωρεάν Μαθήματα και Σεμινάρια Apache Camel" class="center">
-<p></p>
+<p>Μπορούμε λοιπόν να αντικαταστήσουμε την εξωτερική σύνδεση με τον broker με ένα vm component. Για να αναγνωρίσει το
+συγκεκριμένο component η εφαρμογή μας θα πρέπει να δηλώσουμε το dependency στο <strong>pom.xml</strong> αρχείο.</p>
+
+<p><strong>vm dependency</strong></p>
+<pre class="prettyprint"><xmp>
+	<dependency>
+		<groupId>org.apache.camel</groupId>
+		<artifactId>camel-vm</artifactId>
+		<version>3.4.0</version>
+	</dependency>
+</xmp></pre>
+
+<p>Για να μπορέσουμε να βεβαιωθούμε ότι το μήνυμα μας έφτασε στο vm component, μπορούμε να χρησιμοποιήσουμε έναν processor
+που απλά τυπώνει στο terminal ότι μήνυμα έχει φτάσει στο vm component. Θα μπορούσαμε επίσης μέσα στον Processor να
+γράψουμε κώδικα που μετατρέπει το JSON σε αντικείμενο Customer και να κάναμε κάποια ενέργεια με αυτό. Ας δούμε λοιπόν
+πως αλλάζει ο κώδικας της MyRouteBuilder κλάσης.</p>
+
+<p><strong>MyRouteBuilder.java</strong></p>
+<pre class="prettyprint"><xmp>
+package com.example;
+
+import org.apache.camel.Exchange;
+import org.apache.camel.Processor;
+import org.apache.camel.builder.RouteBuilder;
+
+public class MyRouteBuilder extends RouteBuilder {
+
+
+@Override
+public void configure() {
+
+
+from("file:C:\\testdata1?delete=true").
+		process(new Processor() {
+		public void process(Exchange exchange) throws Exception {
+		String inBody = exchange.getIn().getBody(String.class);
+		inBody = "Message from testdata1 : " + inBody;
+		exchange.getIn().setBody(inBody);
+	}
+}).
+to("direct:start");
+
+from("file:C:\\testdata2?delete=true").process(new Processor() {
+		public void process(Exchange exchange) throws Exception {
+		String inBody = exchange.getIn().getBody(String.class);
+		inBody = "Message from testdata2 : " + inBody;
+		exchange.getIn().setBody(inBody);
+	}
+}).to("direct:start");
+
+from("direct:start").to("vm:test").process(new Processor() {
+		public void process(Exchange exchange) throws Exception {
+		String inBody = exchange.getIn().getBody(String.class);
+		System.out.println(inBody);
+		}
+	});
+}
+}
+
+</xmp></pre>
+
+<p>Τώρα μπορούμε να τρέξουμε την εφαρμογή μας. Δοκιμάστε πρώτα να τοποθετήσετε ένα απλό txt αρχείο μέσα στους φακέλλους
+testdata1 και testdata2. Μετά στείλτε ένα JSON μήνυμα καλώντας το web service. Και στις τρεις περιπτώσεις θα δείτε ότι
+τα μηνύματα έφτασαν στο vm και ο Processor μας τυπώνει στο terminal το κείμενο του κάθε μηνύματος.</p>
+
+<p><strong>Output</strong></p>
+<pre class="prettyprint"><xmp>
+Message from testdata1 : michail
+
+
+
+Message from testdata2 : michail
+
+
+
+{
+"firstName": "Michail",
+"lastName": "Kassapoglou"
+}
+
+1 Michail Kassapoglou
+Created customer 1
+</xmp></pre>
+
 
 <!-- ###################################################################################################-->												
 									
